@@ -58,12 +58,11 @@ NSString * const kSegueIdentiferToChat = @"chatSegue";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     ChatViewController *chatViewController = (ChatViewController *)segue.destinationViewController;
-    self.session.delegate = chatViewController;
+//    self.session.delegate = chatViewController;
     
     [self.friends enumerateObjectsUsingBlock:^(PFUser *user, NSUInteger idx, BOOL *stop) {
         MCPeerID *peerId = [[MCPeerID alloc] initWithDisplayName:user[sParseClassUserKeyFacebookId]];
-        self.session.delegate = chatViewController;
-        [self.browser invitePeer:peerId toSession:self.session withContext:nil timeout:60];
+        [self.browser invitePeer:peerId toSession:self.session withContext:[NSData data] timeout:1];
     }];
 }
 
@@ -234,15 +233,22 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
 {
-    PFUser *peer = [PFQuery getUserObjectWithId:peerID.displayName];
-    NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
-    NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
-    if (foundFriends.count > 0) {
-        PFUser *peerToRemove = foundFriends[0];
-        [self.friends removeObject:peerToRemove];
-        [self.tableView reloadData];
-    }
-    [self browseForPeers];
+    PFUser *peer = [PFUser objectWithoutDataWithObjectId:peerID.displayName];
+    [peer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (error) {
+            NSLog(@"Got error fetching user %@: %@", peerID.displayName, error);
+            return;
+        } else {
+            NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
+            NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
+            if (foundFriends.count > 0) {
+                [self.friends removeObject:peer];
+                [self.tableView reloadData];
+            }
+            [self browseForPeers];
+            
+        }
+    }];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser didNotStartBrowsingForPeers:(NSError *)error
