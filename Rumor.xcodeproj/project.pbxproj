@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84A7DB0A18359B4400CEAF55 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A7DB0918359B4400CEAF55 /* Parse.framework */; };
+		9C5465A018359EFF00EFED03 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54659F18359EFF00EFED03 /* Parse.framework */; };
 		9CBA81541835998800B2260E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81531835998800B2260E /* Foundation.framework */; };
 		9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81551835998800B2260E /* CoreGraphics.framework */; };
 		9CBA81581835998800B2260E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81571835998800B2260E /* UIKit.framework */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		84A7DB0918359B4400CEAF55 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		9C54659F18359EFF00EFED03 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9CBA81501835998800B2260E /* Rumor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBA81531835998800B2260E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CBA81551835998800B2260E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,7 +64,7 @@
 			files = (
 				9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */,
 				9CBA81581835998800B2260E /* UIKit.framework in Frameworks */,
-				84A7DB0A18359B4400CEAF55 /* Parse.framework in Frameworks */,
+				9C5465A018359EFF00EFED03 /* Parse.framework in Frameworks */,
 				9CBA81541835998800B2260E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +104,7 @@
 		9CBA81521835998800B2260E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84A7DB0918359B4400CEAF55 /* Parse.framework */,
+				9C54659F18359EFF00EFED03 /* Parse.framework */,
 				9CBA81531835998800B2260E /* Foundation.framework */,
 				9CBA81551835998800B2260E /* CoreGraphics.framework */,
 				9CBA81571835998800B2260E /* UIKit.framework */,
@@ -385,6 +385,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/admin/Dropbox/Developer/Rumor,
+					/Users/marina/Dropbox/NatashaTheRobot/Rumor,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rumor/Rumor-Prefix.pch";
@@ -402,6 +403,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/admin/Dropbox/Developer/Rumor,
+					/Users/marina/Dropbox/NatashaTheRobot/Rumor,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rumor/Rumor-Prefix.pch";
