@@ -24,6 +24,8 @@ NSString * const kSegueIdentiferToChat = @"chatSegue";
 @property (strong, nonatomic) NSMutableArray *peerIds;
 @property (strong, nonatomic) NSMutableArray *friends;
 
+@property (assign, nonatomic) BOOL forAdvertiser;
+
 @end
 
 @implementation NearbyFriendsViewController 
@@ -60,11 +62,12 @@ NSString * const kSegueIdentiferToChat = @"chatSegue";
     ChatViewController *chatViewController = (ChatViewController *)segue.destinationViewController;
     self.session.delegate = chatViewController;
     
-    [self.peerIds enumerateObjectsUsingBlock:^(MCPeerID *peerID, NSUInteger idx, BOOL *stop) {
-
-        [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:60];
-        NSLog(@"All donw");
-    }];
+    if (!self.forAdvertiser) {
+        [self.peerIds enumerateObjectsUsingBlock:^(MCPeerID *peerID, NSUInteger idx, BOOL *stop) {
+            
+            [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:60];
+        }];
+    }
 }
 
 #pragma mark - PFLoginViewControllerDelegate
@@ -160,16 +163,19 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
        withContext:(NSData *)context
  invitationHandler:(void (^)(BOOL accept, MCSession *session))invitationHandler
 {
-    PFUser *browsingUser = [PFQuery getUserObjectWithId:peerID.displayName];
-    
-    PFUser *user = [PFUser currentUser];
-    self.invitationHandler = invitationHandler;
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:[NSString stringWithFormat:@"%@, You're Invited!", user[sParseClassUserKeyDisplayName]]
-                              message:[NSString stringWithFormat:@"%@ invited you to chat", browsingUser[sParseClassUserKeyDisplayName]]
-                              delegate:self cancelButtonTitle:@"Decline"
-                              otherButtonTitles:@"Accept", nil];
-    [alertView show];
+//    PFUser *browsingUser = [PFQuery getUserObjectWithId:peerID.displayName];
+//    
+//    PFUser *user = [PFUser currentUser];
+    self.forAdvertiser = YES;
+    invitationHandler(YES, self.session);
+    [self performSegueWithIdentifier:kSegueIdentiferToChat sender:self];
+//    self.invitationHandler = invitationHandler;
+//    UIAlertView *alertView = [[UIAlertView alloc]
+//                              initWithTitle:[NSString stringWithFormat:@"%@, You're Invited!", user[sParseClassUserKeyDisplayName]]
+//                              message:[NSString stringWithFormat:@"%@ invited you to chat", browsingUser[sParseClassUserKeyDisplayName]]
+//                              delegate:self cancelButtonTitle:@"Decline"
+//                              otherButtonTitles:@"Accept", nil];
+//    [alertView show];
 }
 
 #pragma mark - Alert View Delegate
