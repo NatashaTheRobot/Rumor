@@ -22,6 +22,7 @@
 		9C54679D1835AB7A00EFED03 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54679C1835AB7A00EFED03 /* Security.framework */; };
 		9C54679F1835AB8700EFED03 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54679E1835AB8700EFED03 /* StoreKit.framework */; };
 		9C5467A11835AB9500EFED03 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */; };
+		9C5467A31835ACAC00EFED03 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467A21835ACAC00EFED03 /* MultipeerConnectivity.framework */; };
 		9CBA81541835998800B2260E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81531835998800B2260E /* Foundation.framework */; };
 		9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81551835998800B2260E /* CoreGraphics.framework */; };
 		9CBA81581835998800B2260E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81571835998800B2260E /* UIKit.framework */; };
@@ -67,6 +68,8 @@
 		9C54679C1835AB7A00EFED03 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		9C54679E1835AB8700EFED03 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9C5467A21835ACAC00EFED03 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		9C5467A41835AFAE00EFED03 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9CBA81501835998800B2260E /* Rumor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBA81531835998800B2260E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CBA81551835998800B2260E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C5467A31835ACAC00EFED03 /* MultipeerConnectivity.framework in Frameworks */,
 				9C5467A11835AB9500EFED03 /* SystemConfiguration.framework in Frameworks */,
 				9C54679F1835AB8700EFED03 /* StoreKit.framework in Frameworks */,
 				9C54679D1835AB7A00EFED03 /* Security.framework in Frameworks */,
@@ -158,6 +162,7 @@
 		9CBA81521835998800B2260E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C5467A21835ACAC00EFED03 /* MultipeerConnectivity.framework */,
 				9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */,
 				9C54679E1835AB8700EFED03 /* StoreKit.framework */,
 				9C54679C1835AB7A00EFED03 /* Security.framework */,
@@ -182,6 +187,7 @@
 			children = (
 				9CBA81621835998900B2260E /* AppDelegate.h */,
 				9CBA81631835998900B2260E /* AppDelegate.m */,
+				9C5467A41835AFAE00EFED03 /* Constants.h */,
 				9CBA81651835998900B2260E /* Main.storyboard */,
 				9CBA81681835998900B2260E /* ViewController.h */,
 				9CBA81691835998900B2260E /* ViewController.m */,
