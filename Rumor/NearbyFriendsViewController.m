@@ -18,6 +18,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
 @property (strong, nonatomic) MCNearbyServiceAdvertiser *advertiser;
 @property (strong, nonatomic) MCSession *session;
 @property (assign, nonatomic) InvitationHandler invitationHandler;
+@property (strong, nonatomic) NSArray *myFriendsFacebookIds;
 
 @property (strong, nonatomic) NSMutableArray *friends;
 
@@ -44,6 +45,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
     if (![PFUser currentUser]) {
         [self presentViewController:self.loginViewController animated:NO completion:nil];
     } else {
+        [self loadMyFacebookFriendsIds];
         [self advertisePeer];
         [self browseForPeers];
     }
@@ -89,6 +91,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
             [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (newUser) {
                     [self dismissViewControllerAnimated:YES completion:nil];
+                    [self loadMyFacebookFriendsIds];
                     [self advertisePeer];
                     [self browseForPeers];
                 }
@@ -179,17 +182,48 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info
 {
-    PFUser *peer = [PFQuery getUserObjectWithId:peerID.displayName];
+    PFUser *peer = [PFUser objectWithoutDataWithObjectId:peerID.displayName];
+    [peer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (error) {
+            NSLog(@"Got error fetching user %@: %@", peerID.displayName, error);
+            return;
+        } else {
+            if ([self isPeerFacebookFriend:peer[sParseClassUserKeyFacebookId]]) {
+                NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
+                NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
+                if (foundFriends.count == 0) {
+                    [self.friends addObject:peer];
+                    [self.tableView reloadData];
+                }
+            }
+        }
+    }];
     
-    // Check if peer is a facebook Friend!
     
-    NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
-    NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
-    if (foundFriends.count == 0) {
-        [self.friends addObject:peer];
-        [self.tableView reloadData];
-    }
 }
+
+- (BOOL) isPeerFacebookFriend:(NSString *)facebookId{
+    return [self.myFriendsFacebookIds containsObject:facebookId];
+}
+
+- (void) loadMyFacebookFriendsIds{
+    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:@"id",@"fields", nil];
+    FBRequest *friendRequest = [FBRequest requestWithGraphPath:@"me/friends"  parameters:params HTTPMethod:nil];
+    [friendRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
+                                                 NSDictionary* result,
+                                                 NSError *error) {
+        if (error) {
+            //Handle error
+        } else {
+            NSMutableArray *myFriendsFacebookIds = [[NSMutableArray alloc] init];
+            for (NSDictionary<FBGraphUser> *friend in [result objectForKey:@"data"]) {
+                [myFriendsFacebookIds addObject:friend[@"id"]];
+            }
+            self.myFriendsFacebookIds = [myFriendsFacebookIds copy];
+        }
+    }];
+}
+
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
 {
