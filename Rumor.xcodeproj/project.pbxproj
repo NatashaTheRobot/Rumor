@@ -13,6 +13,15 @@
 		9C5465A41835A4C300EFED03 /* NearbyFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5465A31835A4C300EFED03 /* NearbyFriendsViewController.m */; };
 		9C5465A71835A51000EFED03 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5465A61835A51000EFED03 /* ChatViewController.m */; };
 		9C54678F1835AA1800EFED03 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54678E1835AA1800EFED03 /* FacebookSDK.framework */; };
+		9C5467911835AB2D00EFED03 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467901835AB2D00EFED03 /* AudioToolbox.framework */; };
+		9C5467931835AB3700EFED03 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467921835AB3700EFED03 /* CFNetwork.framework */; };
+		9C5467951835AB4900EFED03 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467941835AB4900EFED03 /* CoreLocation.framework */; };
+		9C5467971835AB5200EFED03 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467961835AB5200EFED03 /* libz.1.1.3.dylib */; };
+		9C5467991835AB5F00EFED03 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467981835AB5F00EFED03 /* MobileCoreServices.framework */; };
+		9C54679B1835AB6B00EFED03 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54679A1835AB6B00EFED03 /* QuartzCore.framework */; };
+		9C54679D1835AB7A00EFED03 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54679C1835AB7A00EFED03 /* Security.framework */; };
+		9C54679F1835AB8700EFED03 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54679E1835AB8700EFED03 /* StoreKit.framework */; };
+		9C5467A11835AB9500EFED03 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */; };
 		9CBA81541835998800B2260E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81531835998800B2260E /* Foundation.framework */; };
 		9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81551835998800B2260E /* CoreGraphics.framework */; };
 		9CBA81581835998800B2260E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81571835998800B2260E /* UIKit.framework */; };
@@ -49,6 +58,15 @@
 		9C5465A51835A51000EFED03 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		9C5465A61835A51000EFED03 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		9C54678E1835AA1800EFED03 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		9C5467901835AB2D00EFED03 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9C5467921835AB3700EFED03 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9C5467941835AB4900EFED03 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9C5467961835AB5200EFED03 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		9C5467981835AB5F00EFED03 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9C54679A1835AB6B00EFED03 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9C54679C1835AB7A00EFED03 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9C54679E1835AB8700EFED03 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9CBA81501835998800B2260E /* Rumor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBA81531835998800B2260E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CBA81551835998800B2260E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -75,7 +93,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C5467A11835AB9500EFED03 /* SystemConfiguration.framework in Frameworks */,
+				9C54679F1835AB8700EFED03 /* StoreKit.framework in Frameworks */,
+				9C54679D1835AB7A00EFED03 /* Security.framework in Frameworks */,
+				9C54679B1835AB6B00EFED03 /* QuartzCore.framework in Frameworks */,
+				9C5467991835AB5F00EFED03 /* MobileCoreServices.framework in Frameworks */,
+				9C5467971835AB5200EFED03 /* libz.1.1.3.dylib in Frameworks */,
+				9C5467951835AB4900EFED03 /* CoreLocation.framework in Frameworks */,
 				9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */,
+				9C5467931835AB3700EFED03 /* CFNetwork.framework in Frameworks */,
+				9C5467911835AB2D00EFED03 /* AudioToolbox.framework in Frameworks */,
 				9C54678F1835AA1800EFED03 /* FacebookSDK.framework in Frameworks */,
 				9CBA81581835998800B2260E /* UIKit.framework in Frameworks */,
 				9C5465A018359EFF00EFED03 /* Parse.framework in Frameworks */,
@@ -99,6 +126,8 @@
 		9C5465A11835A4A100EFED03 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84A7DB0B18359FFC00CEAF55 /* LoginViewController.h */,
+				84A7DB0C18359FFC00CEAF55 /* LoginViewController.m */,
 				9C5465A21835A4C300EFED03 /* NearbyFriendsViewController.h */,
 				9C5465A31835A4C300EFED03 /* NearbyFriendsViewController.m */,
 				9C5465A51835A51000EFED03 /* ChatViewController.h */,
@@ -129,6 +158,15 @@
 		9CBA81521835998800B2260E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */,
+				9C54679E1835AB8700EFED03 /* StoreKit.framework */,
+				9C54679C1835AB7A00EFED03 /* Security.framework */,
+				9C54679A1835AB6B00EFED03 /* QuartzCore.framework */,
+				9C5467981835AB5F00EFED03 /* MobileCoreServices.framework */,
+				9C5467961835AB5200EFED03 /* libz.1.1.3.dylib */,
+				9C5467941835AB4900EFED03 /* CoreLocation.framework */,
+				9C5467921835AB3700EFED03 /* CFNetwork.framework */,
+				9C5467901835AB2D00EFED03 /* AudioToolbox.framework */,
 				9C54678E1835AA1800EFED03 /* FacebookSDK.framework */,
 				9C54659F18359EFF00EFED03 /* Parse.framework */,
 				9CBA81531835998800B2260E /* Foundation.framework */,
@@ -148,8 +186,6 @@
 				9CBA81681835998900B2260E /* ViewController.h */,
 				9CBA81691835998900B2260E /* ViewController.m */,
 				9C5465A11835A4A100EFED03 /* ViewControllers */,
-				84A7DB0B18359FFC00CEAF55 /* LoginViewController.h */,
-				84A7DB0C18359FFC00CEAF55 /* LoginViewController.m */,
 				84A7DB0D18359FFC00CEAF55 /* LoginViewController.xib */,
 				9CBA816B1835998900B2260E /* Images.xcassets */,
 				9CBA815A1835998800B2260E /* Supporting Files */,

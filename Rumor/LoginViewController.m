@@ -7,8 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import <Parse/Parse.h>
-#import <Facebook/Facebook.h>
 
 @interface LoginViewController () <PFLogInViewControllerDelegate>
 
