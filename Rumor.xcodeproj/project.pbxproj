@@ -23,6 +23,7 @@
 		9C54679F1835AB8700EFED03 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54679E1835AB8700EFED03 /* StoreKit.framework */; };
 		9C5467A11835AB9500EFED03 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */; };
 		9C5467A31835ACAC00EFED03 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C5467A21835ACAC00EFED03 /* MultipeerConnectivity.framework */; };
+		9C5467A91835B58600EFED03 /* placeholder.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9C5467A81835B58600EFED03 /* placeholder.jpeg */; };
 		9CBA81541835998800B2260E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81531835998800B2260E /* Foundation.framework */; };
 		9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81551835998800B2260E /* CoreGraphics.framework */; };
 		9CBA81581835998800B2260E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81571835998800B2260E /* UIKit.framework */; };
@@ -70,6 +71,7 @@
 		9C5467A01835AB9500EFED03 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9C5467A21835ACAC00EFED03 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		9C5467A41835AFAE00EFED03 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9C5467A81835B58600EFED03 /* placeholder.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpeg; sourceTree = "<group>"; };
 		9CBA81501835998800B2260E /* Rumor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBA81531835998800B2260E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CBA81551835998800B2260E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +142,14 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		9C5467A71835B56A00EFED03 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9C5467A81835B58600EFED03 /* placeholder.jpeg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		9CBA81471835998800B2260E = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +202,7 @@
 				9CBA81681835998900B2260E /* ViewController.h */,
 				9CBA81691835998900B2260E /* ViewController.m */,
 				9C5465A11835A4A100EFED03 /* ViewControllers */,
+				9C5467A71835B56A00EFED03 /* Images */,
 				84A7DB0D18359FFC00CEAF55 /* LoginViewController.xib */,
 				9CBA816B1835998900B2260E /* Images.xcassets */,
 				9CBA815A1835998800B2260E /* Supporting Files */,
@@ -307,6 +318,7 @@
 			files = (
 				84A7DB0F18359FFC00CEAF55 /* LoginViewController.xib in Resources */,
 				9CBA816C1835998900B2260E /* Images.xcassets in Resources */,
+				9C5467A91835B58600EFED03 /* placeholder.jpeg in Resources */,
 				9CBA815E1835998900B2260E /* InfoPlist.strings in Resources */,
 				9CBA81671835998900B2260E /* Main.storyboard in Resources */,
 			);

@@ -115,8 +115,10 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
 {
     static NSString *CellIdentifier = @"friendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    MCPeerID *peerID = self.friends[indexPath.row];
-    cell.textLabel.text = peerID.displayName;
+    PFUser *friend = self.friends[indexPath.row];
+    cell.textLabel.text = friend[sParseClassUserKeyDisplayName];
+    
+//    cell.imageView.image = // PUT IN IMAGE HERE
     
     return cell;
 }
