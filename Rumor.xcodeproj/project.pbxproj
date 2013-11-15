@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84A7DB0E18359FFC00CEAF55 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A7DB0C18359FFC00CEAF55 /* LoginViewController.m */; };
+		84A7DB0F18359FFC00CEAF55 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84A7DB0D18359FFC00CEAF55 /* LoginViewController.xib */; };
+		84A7DB111835A21A00CEAF55 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A7DB101835A21A00CEAF55 /* FacebookSDK.framework */; };
 		9C5465A018359EFF00EFED03 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C54659F18359EFF00EFED03 /* Parse.framework */; };
 		9C5465A41835A4C300EFED03 /* NearbyFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5465A31835A4C300EFED03 /* NearbyFriendsViewController.m */; };
 		9C5465A71835A51000EFED03 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C5465A61835A51000EFED03 /* ChatViewController.m */; };
@@ -37,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		84A7DB0B18359FFC00CEAF55 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		84A7DB0C18359FFC00CEAF55 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		84A7DB0D18359FFC00CEAF55 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		84A7DB101835A21A00CEAF55 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		9C54659F18359EFF00EFED03 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		9C5465A21835A4C300EFED03 /* NearbyFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyFriendsViewController.h; sourceTree = "<group>"; };
 		9C5465A31835A4C300EFED03 /* NearbyFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyFriendsViewController.m; sourceTree = "<group>"; };
@@ -69,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CBA81561835998800B2260E /* CoreGraphics.framework in Frameworks */,
+				84A7DB111835A21A00CEAF55 /* FacebookSDK.framework in Frameworks */,
 				9CBA81581835998800B2260E /* UIKit.framework in Frameworks */,
 				9C5465A018359EFF00EFED03 /* Parse.framework in Frameworks */,
 				9CBA81541835998800B2260E /* Foundation.framework in Frameworks */,
@@ -121,6 +129,7 @@
 		9CBA81521835998800B2260E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84A7DB101835A21A00CEAF55 /* FacebookSDK.framework */,
 				9C54659F18359EFF00EFED03 /* Parse.framework */,
 				9CBA81531835998800B2260E /* Foundation.framework */,
 				9CBA81551835998800B2260E /* CoreGraphics.framework */,
@@ -139,6 +148,9 @@
 				9CBA81681835998900B2260E /* ViewController.h */,
 				9CBA81691835998900B2260E /* ViewController.m */,
 				9C5465A11835A4A100EFED03 /* ViewControllers */,
+				84A7DB0B18359FFC00CEAF55 /* LoginViewController.h */,
+				84A7DB0C18359FFC00CEAF55 /* LoginViewController.m */,
+				84A7DB0D18359FFC00CEAF55 /* LoginViewController.xib */,
 				9CBA816B1835998900B2260E /* Images.xcassets */,
 				9CBA815A1835998800B2260E /* Supporting Files */,
 			);
@@ -250,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A7DB0F18359FFC00CEAF55 /* LoginViewController.xib in Resources */,
 				9CBA816C1835998900B2260E /* Images.xcassets in Resources */,
 				9CBA815E1835998900B2260E /* InfoPlist.strings in Resources */,
 				9CBA81671835998900B2260E /* Main.storyboard in Resources */,
@@ -271,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A7DB0E18359FFC00CEAF55 /* LoginViewController.m in Sources */,
 				9CBA816A1835998900B2260E /* ViewController.m in Sources */,
 				9CBA81641835998900B2260E /* AppDelegate.m in Sources */,
 				9C5465A71835A51000EFED03 /* ChatViewController.m in Sources */,
@@ -406,6 +420,7 @@
 					"$(inherited)",
 					/Users/admin/Dropbox/Developer/Rumor,
 					/Users/marina/Dropbox/NatashaTheRobot/Rumor,
+					/Users/admin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rumor/Rumor-Prefix.pch";
@@ -424,6 +439,7 @@
 					"$(inherited)",
 					/Users/admin/Dropbox/Developer/Rumor,
 					/Users/marina/Dropbox/NatashaTheRobot/Rumor,
+					/Users/admin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rumor/Rumor-Prefix.pch";
