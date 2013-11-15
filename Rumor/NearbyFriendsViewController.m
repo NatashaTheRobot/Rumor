@@ -21,7 +21,7 @@ NSString * const kSegueIdentiferToChat = @"chatSegue";
 @property (strong, nonatomic) MCSession *session;
 @property (assign, nonatomic) InvitationHandler invitationHandler;
 @property (strong, nonatomic) NSArray *myFriendsFacebookIds;
-
+@property (strong, nonatomic) NSMutableArray *peerIds;
 @property (strong, nonatomic) NSMutableArray *friends;
 
 @end
@@ -58,11 +58,12 @@ NSString * const kSegueIdentiferToChat = @"chatSegue";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     ChatViewController *chatViewController = (ChatViewController *)segue.destinationViewController;
-//    self.session.delegate = chatViewController;
+    self.session.delegate = chatViewController;
     
-    [self.friends enumerateObjectsUsingBlock:^(PFUser *user, NSUInteger idx, BOOL *stop) {
-        MCPeerID *peerId = [[MCPeerID alloc] initWithDisplayName:user[sParseClassUserKeyFacebookId]];
-        [self.browser invitePeer:peerId toSession:self.session withContext:[NSData data] timeout:1];
+    [self.peerIds enumerateObjectsUsingBlock:^(MCPeerID *peerID, NSUInteger idx, BOOL *stop) {
+
+        [self.browser invitePeer:peerID toSession:self.session withContext:nil timeout:60];
+        NSLog(@"All donw");
     }];
 }
 
@@ -198,6 +199,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
                 NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
                 NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
                 if (foundFriends.count == 0) {
+                    [self.peerIds addObject:peerID];
                     [self.friends addObject:peer];
                     [self.tableView reloadData];
                 }
@@ -242,6 +244,7 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
             NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
             NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
             if (foundFriends.count > 0) {
+                [self.peerIds removeObject:peerID];
                 [self.friends removeObject:peer];
                 [self.tableView reloadData];
             }
@@ -264,6 +267,13 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
         self.friends = [NSMutableArray arrayWithCapacity:10];
     }
     return _friends;
+}
+
+- (NSMutableArray *)peerIds{
+    if (!_peerIds) {
+        self.peerIds = [NSMutableArray arrayWithCapacity:10];
+    }
+    return _peerIds;
 }
 
 @end
