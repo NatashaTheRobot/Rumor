@@ -25,6 +25,8 @@
     [super viewDidLoad];
 	
     self.messages = [NSMutableArray array];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 
 #pragma mark - Actions
@@ -33,6 +35,7 @@
 {
     [self.messages addObject:self.commentTextField.text];
     [self.commentTextField resignFirstResponder];
+    self.commentTextField.text = @"";
     [self.tableView reloadData];
 }
 
@@ -52,18 +55,7 @@
 {
     static NSString *CellIdentifier = @"message";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-//    PFUser *friend = self.friends[indexPath.row];
-//    cell.textLabel.text = friend[sParseClassUserKeyDisplayName];
-//    NSURL *pictureUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=150&height=150", friend[sParseClassUserKeyFacebookId]]];
-//    //[cell.imageView setImageWithURL:pictureUrl];
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-//    dispatch_async(queue, ^{
-//        NSData * imageData = [NSData dataWithContentsOfURL:pictureUrl];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            UIImage *image = [UIImage imageWithData:imageData];
-//            cell.imageView.image = image;
-//        });
-//    });
+    cell.textLabel.text = self.messages[indexPath.row];
     return cell;
 }
 
