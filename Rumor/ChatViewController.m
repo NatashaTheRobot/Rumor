@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
+@property (weak, nonatomic) IBOutlet UIView *commentUIView;
 
 @property (strong, nonatomic) NSMutableArray *messages;
 
@@ -31,6 +32,7 @@
 - (IBAction)onSendButtonTap:(id)sender
 {
     [self.messages addObject:self.commentTextField.text];
+    [self.commentTextField resignFirstResponder];
     [self.tableView reloadData];
 }
 
@@ -97,6 +99,49 @@
     certificateHandler(YES);
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)moveTextViewForKeyboard:(NSNotification*)aNotification up:(BOOL)up {
+    NSDictionary* userInfo = [aNotification userInfo];
+    NSTimeInterval animationDuration;
+    UIViewAnimationCurve animationCurve;
+    CGRect keyboardEndFrame;
+    
+    [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
+    [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
+    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    [UIView setAnimationCurve:animationCurve];
+    
+    CGRect newFrame = self.commentUIView.frame;
+    CGRect keyboardFrame = [self.view convertRect:keyboardEndFrame toView:nil];
+    newFrame.origin.y -= keyboardFrame.size.height * (up?1:-1);
+    self.commentUIView.frame = newFrame;
+    
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillShown:(NSNotification*)aNotification
+{
+    [self moveTextViewForKeyboard:aNotification up:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification*)aNotification
+{
+    [self moveTextViewForKeyboard:aNotification up:NO];
+}
 
 
 @end

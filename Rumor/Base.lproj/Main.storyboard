@@ -133,6 +133,7 @@
                     <navigationItem key="navigationItem" title="Chat" id="gEl-2e-0fg"/>
                     <connections>
                         <outlet property="commentTextField" destination="V5o-2l-szw" id="l0R-Fq-IUc"/>
+                        <outlet property="commentUIView" destination="SSI-f0-9rZ" id="KfF-cQ-Csh"/>
                         <outlet property="tableView" destination="uS1-fc-D3I" id="TOn-kW-QaM"/>
                     </connections>
                 </viewController>
