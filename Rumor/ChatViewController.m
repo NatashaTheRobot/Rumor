@@ -8,10 +8,12 @@
 
 #import "ChatViewController.h"
 
-@interface ChatViewController ()
+@interface ChatViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
+
+@property (strong, nonatomic) NSMutableArray *messages;
 
 @end
 
@@ -20,14 +22,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    self.messages = [NSMutableArray array];
 }
 
 #pragma mark - Actions
 
 - (IBAction)onSendButtonTap:(id)sender
 {
-    
+    [self.messages addObject:self.commentTextField.text];
+    [self.tableView reloadData];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.messages.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"message";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    PFUser *friend = self.friends[indexPath.row];
+//    cell.textLabel.text = friend[sParseClassUserKeyDisplayName];
+//    NSURL *pictureUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?width=150&height=150", friend[sParseClassUserKeyFacebookId]]];
+//    //[cell.imageView setImageWithURL:pictureUrl];
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+//    dispatch_async(queue, ^{
+//        NSData * imageData = [NSData dataWithContentsOfURL:pictureUrl];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UIImage *image = [UIImage imageWithData:imageData];
+//            cell.imageView.image = image;
+//        });
+//    });
+    return cell;
 }
 
 #pragma mark - Session Delegate
