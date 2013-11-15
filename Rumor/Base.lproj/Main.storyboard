@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Nearby Friends" id="5Oq-LX-mxN">
                         <barButtonItem key="rightBarButtonItem" title="Chat" id="Edb-SG-GTx">
                             <connections>
-                                <segue destination="gBQ-JM-i2c" kind="push" id="7ZW-5Z-GB6"/>
+                                <segue destination="gBQ-JM-i2c" kind="push" identifier="chatSegue" id="7ZW-5Z-GB6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

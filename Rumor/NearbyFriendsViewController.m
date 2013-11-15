@@ -11,6 +11,8 @@
 
 typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
 
+NSString * const kSegueIdentiferToChat = @"chatSegue";
+
 @interface NearbyFriendsViewController () <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, UIAlertViewDelegate, PFLogInViewControllerDelegate>
 
 @property (strong, nonatomic) PFLogInViewController *loginViewController;
@@ -57,18 +59,11 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
 {
     ChatViewController *chatViewController = (ChatViewController *)segue.destinationViewController;
     self.session.delegate = chatViewController;
-}
-
-#pragma mark - Actions
-
-- (IBAction)onChatButtonTap:(id)sender
-{
-    // do this in the Chat View Controller!!!
-    // segue to chat view controller - make chat view controller the session delegate.
-    [self.friends enumerateObjectsUsingBlock:^(MCPeerID *peerId, NSUInteger idx, BOOL *stop) {
-        self.session = [[MCSession alloc] initWithPeer:[[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name]];
+    
+    [self.friends enumerateObjectsUsingBlock:^(PFUser *user, NSUInteger idx, BOOL *stop) {
+        MCPeerID *peerId = [[MCPeerID alloc] initWithDisplayName:user[sParseClassUserKeyFacebookId]];
+        self.session.delegate = chatViewController;
         [self.browser invitePeer:peerId toSession:self.session withContext:nil timeout:60];
-        
     }];
 }
 
@@ -140,7 +135,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
     PFUser *user = [PFUser currentUser];
     if (user) {
         MCPeerID *advertiserPeerId = [[MCPeerID alloc] initWithDisplayName:user.objectId];
-        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:advertiserPeerId discoveryInfo:nil serviceType:@"rumor-chat"];
+        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:advertiserPeerId discoveryInfo:@{} serviceType:@"rumor-chat"];
         self.advertiser.delegate = self;
         [self.advertiser startAdvertisingPeer];
     }
@@ -155,6 +150,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
     self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:browserId serviceType:@"rumor-chat"];
     self.browser.delegate = self;
     [self.browser startBrowsingForPeers];
+    self.session = [[MCSession alloc] initWithPeer:browserId];
 }
 
 #pragma mark - MCNearbyAdvertiserDelegate
@@ -181,8 +177,12 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     BOOL accept = buttonIndex == alertView.cancelButtonIndex ? NO : YES;
-    self.session = [[MCSession alloc] initWithPeer:[[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name]];
+    PFUser *user = [PFUser currentUser];
+    self.session = [[MCSession alloc] initWithPeer:[[MCPeerID alloc] initWithDisplayName:user.objectId]];
     self.invitationHandler(accept, self.session);
+    if (accept) {
+        [self performSegueWithIdentifier:kSegueIdentiferToChat sender:self];
+    }
 }
 
 #pragma mark - MCNearbyBrowerDelegate

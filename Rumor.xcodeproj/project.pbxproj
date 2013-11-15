@@ -31,7 +31,6 @@
 		9CBA81601835998900B2260E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBA815F1835998900B2260E /* main.m */; };
 		9CBA81641835998900B2260E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBA81631835998900B2260E /* AppDelegate.m */; };
 		9CBA81671835998900B2260E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CBA81651835998900B2260E /* Main.storyboard */; };
-		9CBA816A1835998900B2260E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBA81691835998900B2260E /* ViewController.m */; };
 		9CBA816C1835998900B2260E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CBA816B1835998900B2260E /* Images.xcassets */; };
 		9CBA81731835998900B2260E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81721835998900B2260E /* XCTest.framework */; };
 		9CBA81741835998900B2260E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBA81531835998800B2260E /* Foundation.framework */; };
@@ -83,8 +82,6 @@
 		9CBA81621835998900B2260E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9CBA81631835998900B2260E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9CBA81661835998900B2260E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9CBA81681835998900B2260E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9CBA81691835998900B2260E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9CBA816B1835998900B2260E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9CBA81711835998900B2260E /* RumorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RumorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBA81721835998900B2260E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -199,8 +196,6 @@
 				9CBA81631835998900B2260E /* AppDelegate.m */,
 				9C5467A41835AFAE00EFED03 /* Constants.h */,
 				9CBA81651835998900B2260E /* Main.storyboard */,
-				9CBA81681835998900B2260E /* ViewController.h */,
-				9CBA81691835998900B2260E /* ViewController.m */,
 				9C5465A11835A4A100EFED03 /* ViewControllers */,
 				9C5467A71835B56A00EFED03 /* Images */,
 				84A7DB0D18359FFC00CEAF55 /* LoginViewController.xib */,
@@ -340,7 +335,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A7DB0E18359FFC00CEAF55 /* LoginViewController.m in Sources */,
-				9CBA816A1835998900B2260E /* ViewController.m in Sources */,
 				9CBA81641835998900B2260E /* AppDelegate.m in Sources */,
 				9C5465A71835A51000EFED03 /* ChatViewController.m in Sources */,
 				9CBA81601835998900B2260E /* main.m in Sources */,
