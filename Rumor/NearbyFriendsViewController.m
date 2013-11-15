@@ -11,6 +11,8 @@
 
 typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
 
+NSString * const kSegueIdentiferToChat = @"chatSegue";
+
 @interface NearbyFriendsViewController () <MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, UIAlertViewDelegate, PFLogInViewControllerDelegate>
 
 @property (strong, nonatomic) PFLogInViewController *loginViewController;
@@ -56,19 +58,11 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     ChatViewController *chatViewController = (ChatViewController *)segue.destinationViewController;
-    self.session.delegate = chatViewController;
-}
-
-#pragma mark - Actions
-
-- (IBAction)onChatButtonTap:(id)sender
-{
-    // do this in the Chat View Controller!!!
-    // segue to chat view controller - make chat view controller the session delegate.
-    [self.friends enumerateObjectsUsingBlock:^(MCPeerID *peerId, NSUInteger idx, BOOL *stop) {
-        self.session = [[MCSession alloc] initWithPeer:[[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name]];
-        [self.browser invitePeer:peerId toSession:self.session withContext:nil timeout:60];
-        
+//    self.session.delegate = chatViewController;
+    
+    [self.friends enumerateObjectsUsingBlock:^(PFUser *user, NSUInteger idx, BOOL *stop) {
+        MCPeerID *peerId = [[MCPeerID alloc] initWithDisplayName:user[sParseClassUserKeyFacebookId]];
+        [self.browser invitePeer:peerId toSession:self.session withContext:[NSData data] timeout:1];
     }];
 }
 
@@ -140,7 +134,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
     PFUser *user = [PFUser currentUser];
     if (user) {
         MCPeerID *advertiserPeerId = [[MCPeerID alloc] initWithDisplayName:user.objectId];
-        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:advertiserPeerId discoveryInfo:nil serviceType:@"rumor-chat"];
+        self.advertiser = [[MCNearbyServiceAdvertiser alloc] initWithPeer:advertiserPeerId discoveryInfo:@{} serviceType:@"rumor-chat"];
         self.advertiser.delegate = self;
         [self.advertiser startAdvertisingPeer];
     }
@@ -155,6 +149,7 @@ typedef void (^InvitationHandler)(BOOL accept, MCSession *session);
     self.browser = [[MCNearbyServiceBrowser alloc] initWithPeer:browserId serviceType:@"rumor-chat"];
     self.browser.delegate = self;
     [self.browser startBrowsingForPeers];
+    self.session = [[MCSession alloc] initWithPeer:browserId];
 }
 
 #pragma mark - MCNearbyAdvertiserDelegate
@@ -181,8 +176,12 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     BOOL accept = buttonIndex == alertView.cancelButtonIndex ? NO : YES;
-    self.session = [[MCSession alloc] initWithPeer:[[MCPeerID alloc] initWithDisplayName:[UIDevice currentDevice].name]];
+    PFUser *user = [PFUser currentUser];
+    self.session = [[MCSession alloc] initWithPeer:[[MCPeerID alloc] initWithDisplayName:user.objectId]];
     self.invitationHandler(accept, self.session);
+    if (accept) {
+        [self performSegueWithIdentifier:kSegueIdentiferToChat sender:self];
+    }
 }
 
 #pragma mark - MCNearbyBrowerDelegate
@@ -234,15 +233,22 @@ didReceiveInvitationFromPeer:(MCPeerID *)peerID
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID
 {
-    PFUser *peer = [PFQuery getUserObjectWithId:peerID.displayName];
-    NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
-    NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
-    if (foundFriends.count > 0) {
-        PFUser *peerToRemove = foundFriends[0];
-        [self.friends removeObject:peerToRemove];
-        [self.tableView reloadData];
-    }
-    [self browseForPeers];
+    PFUser *peer = [PFUser objectWithoutDataWithObjectId:peerID.displayName];
+    [peer fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (error) {
+            NSLog(@"Got error fetching user %@: %@", peerID.displayName, error);
+            return;
+        } else {
+            NSPredicate *filter = [NSPredicate predicateWithFormat:@"objectId = %@", peer.objectId];
+            NSArray *foundFriends = [self.friends filteredArrayUsingPredicate:filter];
+            if (foundFriends.count > 0) {
+                [self.friends removeObject:peer];
+                [self.tableView reloadData];
+            }
+            [self browseForPeers];
+            
+        }
+    }];
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser didNotStartBrowsingForPeers:(NSError *)error
