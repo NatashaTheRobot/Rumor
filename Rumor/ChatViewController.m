@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIView *commentUIView;
 
 @property (strong, nonatomic) NSMutableArray *messages;
+@property (strong, nonatomic) NSMutableArray *peers;
 
 @end
 
@@ -33,6 +34,10 @@
 
 - (IBAction)onSendButtonTap:(id)sender
 {
+    NSData *stringDAta = [self.commentTextField.text dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    [self.session sendData:stringDAta toPeers:self.peers withMode:MCSessionSendDataReliable error:&error];
+    
     [self.messages addObject:self.commentTextField.text];
     [self.commentTextField resignFirstResponder];
     self.commentTextField.text = @"";
@@ -63,7 +68,9 @@
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID
 {
-    
+    NSString *message = [NSString stringWithUTF8String:[data bytes]];
+    [self.messages addObject:message];
+    [self.tableView reloadData];
 }
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress
@@ -83,7 +90,7 @@
 
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state
 {
-    
+    [self.peers addObject:peerID];
 }
 
 - (void)session:(MCSession *)session didReceiveCertificate:(NSArray *)certificate fromPeer:(MCPeerID *)peerID certificateHandler:(void (^)(BOOL accept))certificateHandler

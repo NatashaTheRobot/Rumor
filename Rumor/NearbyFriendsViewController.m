@@ -61,6 +61,7 @@ NSString * const kSegueIdentiferToChat = @"chatSegue";
 {
     ChatViewController *chatViewController = (ChatViewController *)segue.destinationViewController;
     self.session.delegate = chatViewController;
+    chatViewController.session = self.session;
     
     if (!self.forAdvertiser) {
         [self.peerIds enumerateObjectsUsingBlock:^(MCPeerID *peerID, NSUInteger idx, BOOL *stop) {

@@ -10,4 +10,6 @@
 
 @interface ChatViewController : UIViewController <MCSessionDelegate>
 
+@property (strong, nonatomic) MCSession *session;
+
 @end
